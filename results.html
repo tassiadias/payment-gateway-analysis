@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Analysis Results</title>
+</head>
+<body>
+    <h1>Dataset Preview</h1>
+    {{ preview | safe }}
+
+    <h2>Analysis Insights</h2>
+    <ul>
+        <li><strong>Emerging Market:</strong> {{ insights.emerging_market }}</li>
+        <li><strong>Pricing Strategy:</strong> {{ insights.pricing_strategy }}</li>
+        <li><strong>Market Expansion:</strong> {{ insights.market_expansion }}</li>
+        <li><strong>Fraud Detection:</strong> {{ insights.fraud_detection }}</li>
+    </ul>
+
+    <a href="/">Go back</a>
+</body>
+</html>

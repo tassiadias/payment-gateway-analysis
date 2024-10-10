@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment Gateway Analysis</title>
+    <script>
+        function autoSubmit() {
+            document.getElementById('datasetForm').submit();  // Automatically submit the form
+        }
+    </script>
+</head>
+<body>
+    <h1>Select a Dataset to Analyze</h1>
+    <form method="POST" action="/" id="datasetForm">
+        <select name="dataset" onchange="autoSubmit()">
+            <option value="" disabled selected>Select a dataset</option>
+            {% for key, value in datasets.items() %}
+                <option value="{{ key }}" {% if selected_dataset == key %}selected{% endif %}>{{ value }}</option>
+            {% endfor %}
+        </select>
+    </form>
+
+    {% if preview %}
+    <h2>Dataset Preview</h2>
+    {{ preview | safe }}
+    {% endif %}
+
+    {% if insights %}
+    <h2>Analysis Insights</h2>
+    <ul>
+        <li><strong>Emerging Market:</strong> {{ insights.emerging_market }}</li>
+        <li><strong>Pricing Strategy:</strong> {{ insights.pricing_strategy }}</li>
+        <li><strong>Market Expansion:</strong> {{ insights.market_expansion }}</li>
+        <li><strong>Fraud Detection:</strong> {{ insights.fraud_detection }}</li>
+    </ul>
+    {% endif %}
+
+    {% if preview %}
+    <form method="POST" action="/">
+        <input type="hidden" name="dataset" value="{{ selected_dataset }}">
+        <button type="submit" name="analyze">Analyze</button>
+    </form>
+    {% endif %}
+
+</body>
+</html>
